@@ -7,3 +7,19 @@
 .list-group-item {
     cursor: pointer;
 }
+
+.img-thumbnail{
+    height: 100px;
+    width: 100px;
+}
+.table{
+    text-align: center;
+}
+
+.trunc{
+    display: inherit;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

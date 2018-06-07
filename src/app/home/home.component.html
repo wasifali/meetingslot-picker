@@ -1,4 +1,4 @@
-﻿<div class="container-fluid">
+﻿<div class="container">
     <nav class="navbar fixed-top navbar-dark bg-dark">
         <a class="navbar-brand" href="/">Meeting Point</a>
         <button class="btn btn-info pull-right">
@@ -16,61 +16,66 @@
                 <input class="form-control col-sm-4" type="search" placeholder="Search" aria-label="Search">
             </div>
         </li>
-        <li type="button" data-toggle="modal" data-target="#myModal" (click)="showMeetingDetails(user)" class="list-group-item" *ngFor="let user of users">
-            {{user.firstName}} {{user.lastName}}
+        <li class="list-group-item"
+            data-toggle="modal"
+            data-target="#myModal"
+            *ngFor="let user of users">
+
+            <div (click)="showMeetingDetails(user)" class="row">
+                <span class="col-sm">
+                    <img  class="img-thumbnail" src="{{user.meetingImg}}">
+                </span>
+                <span class="col-sm-8">
+                    {{user.name}}
+                    <hr>
+                    <span class="trunc">
+                        {{user.description}}
+                    </span>
+                </span>
+                <span class="col-sm">{{user.date | date}}</span>
+            </div>
         </li>
     </ul>
 
     <div *ngIf="showList" class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="pull-left">Stats for the Meeting</h3>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Firstname</th>
-                                        <th>Lastname</th>
-                                        <th>Age</th>
-                                        <th>City</th>
-                                        <th>Country</th>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="pull-left"></h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Users</th>
+                                    <th>Name</th>
+                                    <th *ngFor="let slot of activeMeeting.slots">
+                                        <div (click)="select(slot)" class="container">
+                                            <p>{{slot.date | date}}</p><hr><p> {{slot.time}}</p>
+                                        </div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let responder of activeMeeting.responders">
+                                        <td><img src="{{responder.img}}" width="20px"></td>
+                                        <td>{{responder.name}}</td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Anna</td>
-                                        <td>Pitt</td>
-                                        <td>35</td>
-                                        <td>New York</td>
-                                        <td>USA</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Anna</td>
-                                        <td>Pitt</td>
-                                        <td>35</td>
-                                        <td>New York</td>
-                                        <td>USA</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
+
         </div>
+    </div>
 </div>
