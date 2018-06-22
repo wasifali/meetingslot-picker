@@ -8,6 +8,7 @@ export class Meeting {
         slot_id: string,
         date: Date,
         time: string,
+        isSelected: boolean
     }];
     responders:[{
         name: string,

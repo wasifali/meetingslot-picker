@@ -7,7 +7,7 @@
 div.row {
     height: 100vh;
     overflow: hidden;
-    background-image: url("https://smsnix.com/wp-content/uploads/2016/12/Login-Background.jpg");
+    /*background-image: url("https://smsnix.com/wp-content/uploads/2016/12/Login-Background.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
 }

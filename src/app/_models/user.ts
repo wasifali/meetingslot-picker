@@ -4,4 +4,9 @@
     password: string;
     firstName: string;
     lastName: string;
+    groups: string [];
+    hasGroup()
+    {
+        return "admin";
+    }
 }

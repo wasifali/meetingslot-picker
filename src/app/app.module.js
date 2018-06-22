@@ -10,6 +10,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/common/http");
+var forms_2 = require("@angular/forms");
 // used to create fake backend
 var _helpers_1 = require("./_helpers");
 var app_component_1 = require("./app.component");
@@ -19,6 +20,9 @@ var _helpers_2 = require("./_helpers");
 var _services_1 = require("./_services");
 var home_1 = require("./home");
 var login_1 = require("./login");
+var meeting_1 = require("./meeting");
+var meetings_1 = require("./meetings");
+var index_1 = require("./_partials/index");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -28,16 +32,21 @@ var AppModule = /** @class */ (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.ReactiveFormsModule,
                 http_1.HttpClientModule,
+                forms_2.FormsModule,
                 app_routing_1.routing
             ],
             declarations: [
                 app_component_1.AppComponent,
                 home_1.HomeComponent,
-                login_1.LoginComponent
+                login_1.LoginComponent,
+                meeting_1.MeetingComponent,
+                index_1.HeaderComponent,
+                meetings_1.MeetingsComponent
             ],
             providers: [
                 _guards_1.AuthGuard,
                 _services_1.AuthenticationService,
+                _services_1.DataService,
                 _services_1.UserService,
                 {
                     provide: http_1.HTTP_INTERCEPTORS,

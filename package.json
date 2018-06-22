@@ -6,8 +6,8 @@
     "url": ""
   },
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development"
+    "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --mode development\"",
+    "build": "webpack --mode production"
   },
   "license": "MIT",
   "dependencies": {
@@ -20,6 +20,7 @@
     "@angular/router": "^6.0.0",
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",
     "core-js": "^2.5.5",
+    "jquery": "^3.3.1",
     "rxjs": "^6.1.0",
     "zone.js": "^0.8.26"
   },
@@ -27,6 +28,7 @@
     "@types/node": "^10.0.4",
     "angular2-template-loader": "^0.6.2",
     "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.17.5",
     "raw-loader": "^0.5.1",
     "ts-loader": "^4.3.0",
     "typescript": "^2.8.3",

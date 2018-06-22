@@ -16,10 +16,16 @@ var UserService = /** @class */ (function () {
         this.http = http;
     }
     UserService.prototype.getAll = function () {
-        return this.http.get('/api/users');
+        // return this.http.get('http://localhost:9000/wasif/api/getallmeetings');
+        var headers = new http_1.HttpHeaders();
+        headers = headers.set('Content-Type', 'application/json');
+        return this.http.post('http://localhost:9000/wasif/api/getallmeetings', {}, { headers: headers });
     };
     UserService.prototype.saveSlots = function (data) {
-        return this.http.post('/api/users', data);
+        return this.http.post('http://localhost:9000/wasif/api/users/slots', data);
+    };
+    UserService.prototype.addNewSlot = function (data) {
+        return this.http.post('http://localhost:9000/wasif/api/users/addslot', data);
     };
     UserService = __decorate([
         core_1.Injectable(),

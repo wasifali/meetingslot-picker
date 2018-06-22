@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
-    error = '';
+    error : Error;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -23,24 +23,24 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService) {}
 
-    handleFileInput(event : Event){
-        var input = event.target;
-
-        var reader = new FileReader();
-        reader.onload = function(){
-            var dataURL = reader.result;
-            var output : HTMLImageElement
-            output = document.createElement('img');
-            output.src = dataURL;
-            document.getElementById('output').appendChild(output);
-        };
-        reader.readAsDataURL((<HTMLInputElement>input).files[0]);
-        console.log(reader);
-
-        this.selectedFile = reader;
-        // this.selectedFile = (<HTMLInputElement>event.target).files[0];
-        // console.log(this.selectedFile.toString());
-    }
+    // handleFileInput(event : Event){
+    //     var input = event.target;
+    //
+    //     var reader = new FileReader();
+    //     reader.onload = function(){
+    //         var dataURL = reader.result;
+    //         var output : HTMLImageElement
+    //         output = document.createElement('img');
+    //         output.src = dataURL;
+    //         document.getElementById('output').appendChild(output);
+    //     };
+    //     reader.readAsDataURL((<HTMLInputElement>input).files[0]);
+    //     console.log(reader);
+    //
+    //     this.selectedFile = reader;
+    //     // this.selectedFile = (<HTMLInputElement>event.target).files[0];
+    //     // console.log(this.selectedFile.toString());
+    // }
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
@@ -67,13 +67,13 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value, this.selectedFile)
+        this.authenticationService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
-                data => {
+                (data:any) => {
                     this.router.navigate([this.returnUrl]);
                 },
-                error => {
+            (error:Error) => {
                     this.error = error;
                     this.loading = false;
                 });

@@ -16,28 +16,18 @@ var AuthenticationService = /** @class */ (function () {
     function AuthenticationService(http) {
         this.http = http;
     }
-    AuthenticationService.prototype.login = function (username, password, file) {
-        // return this.http.post<any>('/api/authenticate', { username: username, password: password })
-        //     .pipe(map((res:any) => {
-        //         // login successful if there's a jwt token in the response
-        //         if (res && res.token) {
-        //             // store username and jwt token in local storage to keep user logged in between page refreshes
-        //             localStorage.setItem('currentUser', JSON.stringify({ username, token: res.token }));
-        //         }
-        //     }));
-        console.log(file);
-        return this.http.post('http://localhost:9000/wasif/login', { db: 'mp', image: file.result, login: username, password: password })
+    AuthenticationService.prototype.login = function (username, password) {
+        return this.http.post('http://localhost:9000/wasif/login', { db: 'mp', login: username, password: password })
             .pipe(operators_1.map(function (res) {
             console.log('Login Response ::::: ', res);
             // login successful if there's a jwt token in the response
             if (res && res.result.token) {
                 // store username and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify({ username: username, token: res.result.token }));
+                localStorage.setItem('currentUser', JSON.stringify({ user: res.result.user, token: res.result.token }));
             }
         }));
     };
     AuthenticationService.prototype.logout = function () {
-        // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
     };
     AuthenticationService = __decorate([

@@ -23,24 +23,25 @@ var LoginComponent = /** @class */ (function () {
         this.selectedFile = null;
         this.loading = false;
         this.submitted = false;
-        this.error = '';
     }
-    LoginComponent.prototype.handleFileInput = function (event) {
-        var input = event.target;
-        var reader = new FileReader();
-        reader.onload = function () {
-            var dataURL = reader.result;
-            var output;
-            output = document.createElement('img');
-            output.src = dataURL;
-            document.getElementById('output').appendChild(output);
-        };
-        reader.readAsDataURL(input.files[0]);
-        console.log(reader);
-        this.selectedFile = reader;
-        // this.selectedFile = (<HTMLInputElement>event.target).files[0];
-        // console.log(this.selectedFile.toString());
-    };
+    // handleFileInput(event : Event){
+    //     var input = event.target;
+    //
+    //     var reader = new FileReader();
+    //     reader.onload = function(){
+    //         var dataURL = reader.result;
+    //         var output : HTMLImageElement
+    //         output = document.createElement('img');
+    //         output.src = dataURL;
+    //         document.getElementById('output').appendChild(output);
+    //     };
+    //     reader.readAsDataURL((<HTMLInputElement>input).files[0]);
+    //     console.log(reader);
+    //
+    //     this.selectedFile = reader;
+    //     // this.selectedFile = (<HTMLInputElement>event.target).files[0];
+    //     // console.log(this.selectedFile.toString());
+    // }
     LoginComponent.prototype.ngOnInit = function () {
         this.loginForm = this.formBuilder.group({
             username: ['', forms_1.Validators.required],
@@ -65,7 +66,7 @@ var LoginComponent = /** @class */ (function () {
             return;
         }
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value, this.selectedFile)
+        this.authenticationService.login(this.f.username.value, this.f.password.value)
             .pipe(operators_1.first())
             .subscribe(function (data) {
             _this.router.navigate([_this.returnUrl]);

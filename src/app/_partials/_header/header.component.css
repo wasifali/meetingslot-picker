@@ -1,0 +1,18 @@
+.navbar{
+    background-color: rgba(0, 255, 0, 0.2);
+}
+
+.navbar>a{
+    color: white;
+}
+
+.jumbotron{
+    background-color: #54ab35 !important;
+    color: white !important;
+}
+
+.btn-info, .btn-info>a, .btn-secondary{
+    background-color: white;
+    border-color: white;
+    color: #54ab35 !important;
+}
